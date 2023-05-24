@@ -19,8 +19,15 @@
  *          }
  */
 
-export function parsePromised() {
+export function parsePromised(jsonStr) {
   // Your code goes here...
+  return new Promise((res, rej) => {
+    try {
+      res(JSON.parse(jsonStr));
+    } catch (err) {
+      rej(err)
+    }
+  });
 }
 
 /**
@@ -30,8 +37,9 @@ export function parsePromised() {
  * * logs the message property of the error object
  */
 
-export function onReject() {
+export function onReject(err) {
   // Your code goes here...
+  console.log(err.message);
 }
 
 /**
@@ -46,8 +54,11 @@ export function onReject() {
  * Example: export const promiseHandler = () => return <your code>
  */
 
-export const handlePromise = () => {
+export const handlePromise = (promise) => {
   // Your code goes here...
+  return promise
+    .then(data => data)
+    .catch(err => err.message ? onReject(err) : err)
 };
 
 // === TEST YOURSELF ===

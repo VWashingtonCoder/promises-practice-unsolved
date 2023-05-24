@@ -24,7 +24,7 @@ export const promiseArr = [promise1, promise2, promise3, promise4];
  */
 
 // Your code goes here...
-export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
+export const handlePromise1 = Promise.all(promiseArr).catch((e) => e);
 
 /**
  * @task
@@ -41,7 +41,11 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  */
 
 // Your code goes here...
-
+export const handlePromise2 = (array) => {
+  return Promise.any(array)
+    .then(data => data)
+    .catch(err => err);
+}
 /**
  * @task
  * * Create the handlePromise3 function that follows:
@@ -57,6 +61,11 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  */
 
 // Your code goes here...
+export const handlePromise3 = (array) => {
+  return Promise.allSettled(array)
+    .then(results => results)
+    .catch(err => err)
+}
 
 /**
  * @task
@@ -66,8 +75,13 @@ export const handlePromise1 = Promise.any(promiseArr).catch((e) => e);
  * The value of newPromiseArr MUST have more than one promise in the array!
  */
 
+
 export const newPromiseArr = promiseArr.filter((promise) => {
   // Your code goes here...
+  /** Student Notes
+   * This function passed the tests out of the box.
+   * Every method of filtering promises I found in a google search suggested I use async/await. However, I know those have been off limits from the beginning.
+  */ 
   return promise;
 });
 
